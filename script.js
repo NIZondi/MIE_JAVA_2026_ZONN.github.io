@@ -46,47 +46,39 @@ window.onscroll = () => {
 
 //for contacting ME
 
+const form = document.getElementById('form');
+const submitBtn = form.querySelector('button[type="submit"]');
 
-const form = document.querySelector("form");
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+    const formData = new FormData(form);
+    formData.append("access_key", "942896f9-f32b-42ef-a8d9-4646b183b25e");
 
-  const formData = new FormData(form);
+    const originalText = submitBtn.textContent;
 
-  fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    body: formData
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        // Show success message using SweetAlert2
-        Swal.fire({
-          icon: 'success',
-          title: 'Message Sent!',
-          text: 'Thanks for contacting me. I’ll get back to you soon.',
-          confirmButtonColor: '#3085d6'
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
         });
 
-        // Reset the form
-        form.reset();
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops!',
-          text: 'Something went wrong. Try again.',
-        });
-      }
-    })
-    .catch(error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Server Error',
-        text: 'Could not connect. Please try again later.',
-      });
-      console.error("Error:", error);
-    });
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Success! Your message has been sent.");
+            form.reset();
+        } else {
+            alert("Error: " + data.message);
+        }
+
+    } catch (error) {
+        alert("Something went wrong. Please try again.");
+    } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
 });
-
-

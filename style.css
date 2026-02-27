@@ -87,7 +87,7 @@ section {
     display: flex;
     align-items: center;
     padding: 0 9%;
-    background: url('/images/image.png');
+    background: url('/assets/java.png');
     background-size: cover;
     background-position: center;
 }
@@ -529,7 +529,7 @@ span {
 }.skills-column:nth-child(1) .skills-content .progress:nth-child(5) .bar span {
     width: 65%;
 }.skills-column:nth-child(1) .skills-content .progress:nth-child(6) .bar span {
-    width: 65%;
+    width: 70%;
 }
 
 .skills-column:nth-child(2) .skills-content .progress:nth-child(1) .bar span {
@@ -547,6 +547,20 @@ span {
 }.skills-column:nth-child(2) .skills-content .progress:nth-child(6) .bar span {
     width: 59%;
 }
+
+
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: #112240;
+    padding: 20px;
+    border-radius: 10px;
+}
+
 
 .contact {
     min-height: auto;
@@ -661,7 +675,7 @@ span {
 
 .footer-iconTop a::before {
     content: '';
-    top: 0;
+    top: 0; 
     left: 0;
     width: 0;
     height: 100%;
@@ -730,6 +744,62 @@ section:nth-child(odd){
     width: 0;
 }
 
+/*Portfolio style*/
+
+/* ===== PORTFOLIO SECTION ANIMATION ===== */
+
+/* Fade & slide up for project cards */
+.project-card {
+    opacity: 0; /* initially hidden */
+    transform: translateY(30px);
+    animation: fadeSlideUp 0.8s ease forwards;
+}
+
+/* Stagger the cards sequentially */
+.project-card:nth-child(1) { animation-delay: 0.2s; }
+.project-card:nth-child(2) { animation-delay: 0.4s; }
+.project-card:nth-child(3) { animation-delay: 0.6s; }
+.project-card:nth-child(4) { animation-delay: 0.8s; }
+
+/* Hover effect for interactivity */
+.project-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.3);
+    transition: transform 0.5s, box-shadow 0.5s;
+}
+
+/* Animate heading text (typing effect) */
+#portfolio h2 {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.2rem solid var(--main-color);
+    width: 0;
+    animation: typing 2s steps(30, end) forwards;
+}
+
+/* Fade-in & slide-up keyframes */
+@keyframes fadeSlideUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Typing effect for heading */
+@keyframes typing {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+/* Optional: scroll reveal for portfolio container */
+.portfolio-container {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.portfolio.show-animate .portfolio-container {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /*responsive*/
 
