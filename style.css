@@ -16,6 +16,7 @@
     --second-bg-color: #112e42;
     --text-color: #ededed;
     --main-color: #00abf0;
+    --java: #d6970e;
 }
 
 html {
@@ -26,6 +27,25 @@ html {
 body {
     background: var(--bg-color);
     color: var(--text-color);
+    
+}
+/* CURSOR STYLE */
+.custom-cursor {
+position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #3498db;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, var(--java), var(--main-color));
+  animation: fadePulse 2s infinite alternate;
+   opacity: 0.2;
+  transition: transform 0.1s ease;
+  box-shadow: 
+    0 0 10px rgba(3, 198, 212, 0.788),
+    0 0 20px rgba(9, 157, 236, 0.799),
+    0 0 40px rgba(7, 138, 194, 0.4);
 }
 
 .header {
@@ -115,35 +135,9 @@ section {
     font-size: 3.2rem;
     font-weight: 700;
     color: transparent;
-    -webkit-text-stroke: .7px var(--main-color);
-    background-image: linear-gradient(var(--main-color),var(--main-color));
-    background-repeat: no-repeat;
+    -webkit-text-stroke: 1.1px var(--java);
     -webkit-background-clip: text;
-    
     background-position: -33rem 0;
-   
-}
-
-.home.show-animate .home-content .text-animate h3 {
-    animation: homeBgText 6s linear infinite;
-    animation-delay: 2s;
-}
-
-.home-content .text-animate h3::before {
-    content: '';
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    border-right: 2px solid var(--main-color);
-    z-index: -1;
-    
-}
-
-.home.show-animate .home-content .text-animate h3::before {
-    animation: homeCursorText 6s linear infinite;
-    animation-delay: 2s;
 }
 
 .home-content p {
@@ -402,18 +396,18 @@ span {
 .education-content .content::before {
     content: '';
     position: absolute;
-    top: 0;
     left: 0;
     width: 0;
     height: 100%;
     background: var(--second-bg-color);
     z-index: -1;
     transition: .5s;
-}
-
-.education-content .content:hover::before {
+    }
+    
+    .education-content .content:hover::before {
+    top: 0;
     width: 100%;
-}
+    }
 
 .education-content .content .year {
     font-size: 1.5rem;
@@ -424,6 +418,9 @@ span {
 .education-content .content .year i{
     padding-right: .5rem ;
 }
+
+
+
 
 .education-content .content h3 {
     font-size: 2rem;
@@ -487,6 +484,7 @@ span {
 .skills-box .skills-content:hover::before {
     width: 100%;
 }
+
 
 .skills-content .progress {
     padding: 1rem 0;
@@ -553,12 +551,49 @@ span {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    
 }
-
 .project-card {
+    position: relative;
     background: #112240;
     padding: 20px;
     border-radius: 10px;
+    border: 1px solid var(--main-color);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Card lift effect */
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: #00f7ff;
+}
+.project-card h3{
+    padding-bottom: 3px ;
+}
+.project-card img {
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.08);
+}
+.project-card:hover .icon-box i {
+    color: #96e714;
+    transition: 0.3s;
+}
+
+
+.project-card p{
+    padding-bottom: 3px ;
+}
+
+img{
+    height: 210px;
+    width: 300px;
+    max-width: 100%;
+    object-fit: cover;
 }
 
 
@@ -613,6 +648,8 @@ span {
     margin: .8rem 0 2.7rem;
     display: flex;
 }
+
+
 
 .contact form .focus {
     position: absolute;
@@ -697,109 +734,20 @@ span {
     color: var(--main-color);
 }
 
-/*ANIMATION RELOAD AND SCROLL*/
-.animate {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bg-color);
-    z-index: 98;
-}
-.animate.home-img {
-    width: 50%;
-}
-.logo .animate,
-.navbar .animate,
-#menu-icon .animate,
-.home.show-animate .animate {
-    animation: showRight 1s ease forwards;
-    animation-delay: calc(.3s * var(--i));
+.icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
 }
 
-.animate.scroll {
-    transition: 1s ease;
-    transition-delay: calc(.3s / var(--i));
-    animation: none;
+.icon-box i{
+    font-size: 20px;
+    gap: 5px;
+    padding: 5px;
 }
 
-section:nth-child(odd){
-    background: var(--bg-color);
-}
-.footer .animate.scroll {
-    background: var(--second-bg-color);
-}
 
-.education .education-box .animate.scroll {
-    width: 105%;
-}
-
-.about.show-animate .animate.scroll,
-.education.show-animate .animate.scroll,
-.skills.show-animate .animate.scroll,
-.contact.show-animate .animate.scroll,
-.footer.show-animate .animate.scroll {
-    transition-delay: calc(.3s * var(--i));
-    width: 0;
-}
-
-/*Portfolio style*/
-
-/* ===== PORTFOLIO SECTION ANIMATION ===== */
-
-/* Fade & slide up for project cards */
-.project-card {
-    opacity: 0; /* initially hidden */
-    transform: translateY(30px);
-    animation: fadeSlideUp 0.8s ease forwards;
-}
-
-/* Stagger the cards sequentially */
-.project-card:nth-child(1) { animation-delay: 0.2s; }
-.project-card:nth-child(2) { animation-delay: 0.4s; }
-.project-card:nth-child(3) { animation-delay: 0.6s; }
-.project-card:nth-child(4) { animation-delay: 0.8s; }
-
-/* Hover effect for interactivity */
-.project-card:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 1rem 2rem rgba(0,0,0,0.3);
-    transition: transform 0.5s, box-shadow 0.5s;
-}
-
-/* Animate heading text (typing effect) */
-#portfolio h2 {
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 0.2rem solid var(--main-color);
-    width: 0;
-    animation: typing 2s steps(30, end) forwards;
-}
-
-/* Fade-in & slide-up keyframes */
-@keyframes fadeSlideUp {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Typing effect for heading */
-@keyframes typing {
-    0% { width: 0; }
-    100% { width: 100%; }
-}
-
-/* Optional: scroll reveal for portfolio container */
-.portfolio-container {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease;
-}
-
-.portfolio.show-animate .portfolio-container {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 /*responsive*/
 

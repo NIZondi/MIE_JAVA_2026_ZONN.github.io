@@ -53,7 +53,7 @@ form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
-    formData.append("access_key", "942896f9-f32b-42ef-a8d9-4646b183b25e");
+   
 
     const originalText = submitBtn.textContent;
 
@@ -70,6 +70,7 @@ form.addEventListener('submit', async (e) => {
 
         if (response.ok) {
             alert("Success! Your message has been sent.");
+            
             form.reset();
         } else {
             alert("Error: " + data.message);
@@ -82,3 +83,10 @@ form.addEventListener('submit', async (e) => {
         submitBtn.disabled = false;
     }
 });
+
+const cursor = document.querySelector('.custom-cursor');
+
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.pageX + 'px';
+      cursor.style.top = e.pageY + 'px';
+    });
