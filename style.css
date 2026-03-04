@@ -16,7 +16,7 @@
     --second-bg-color: #112e42;
     --text-color: #ededed;
     --main-color: #00abf0;
-    --java: #d6970e;
+    --java: #f58a18;
 }
 
 html {
@@ -47,7 +47,7 @@ position: absolute;
     0 0 20px rgba(9, 157, 236, 0.799),
     0 0 40px rgba(7, 138, 194, 0.4);
 }
-
+/* CSS for the website */
 .header {
     position: fixed;
     top: 0;
@@ -135,7 +135,7 @@ section {
     font-size: 3.2rem;
     font-weight: 700;
     color: transparent;
-    -webkit-text-stroke: 1.1px var(--java);
+    -webkit-text-stroke: 1.5px var(--java);
     -webkit-background-clip: text;
     background-position: -33rem 0;
 }
@@ -553,6 +553,7 @@ span {
     gap: 20px;
     
 }
+
 .project-card {
     position: relative;
     background: #112240;
@@ -574,6 +575,7 @@ span {
 }
 .project-card img {
     transition: transform 0.4s ease;
+     border-radius: 11px;
 }
 
 .project-card:hover img {
@@ -589,17 +591,56 @@ span {
     padding-bottom: 3px ;
 }
 
+.icon-box {    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+}
+
+.icon-box i{
+    font-size: 20px;
+    gap: 5px;
+    padding: 5px;
+}
+
+
 img{
     height: 210px;
     width: 300px;
     max-width: 100%;
     object-fit: cover;
 }
+/* Portrait-slider */
+.portrait-slider {
+    width: 100%;
+    height: 250px; /* match your other project images */
+    position: relative;
+    overflow: hidden;
+}
 
+.portrait-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    border-radius: 10px;
+}
+
+.portrait-slider img.active {
+    opacity: 1;
+}
+
+
+ /* Contact styling */
 
 .contact {
     min-height: auto;
     padding-bottom: 7rem;
+    background-color: var(--second-bg-color);
 }
 
 .contact h2 {
@@ -734,22 +775,9 @@ img{
     color: var(--main-color);
 }
 
-.icon-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #ccc;
-}
-
-.icon-box i{
-    font-size: 20px;
-    gap: 5px;
-    padding: 5px;
-}
 
 
-
-/*responsive*/
+/*responsive styling*/
 
 @media (max-width: 1200px) {
     html {

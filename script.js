@@ -90,3 +90,17 @@ const cursor = document.querySelector('.custom-cursor');
       cursor.style.left = e.pageX + 'px';
       cursor.style.top = e.pageY + 'px';
     });
+
+
+    // Portraits-Slider
+
+    const slides = document.querySelectorAll(".portrait-slider .slide");
+let currentSlide = 0;
+
+function changeSlide() {
+    slides[currentSlide].classList.remove("active");
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add("active");
+}
+
+setInterval(changeSlide, 3000); // changes every 3 seconds
