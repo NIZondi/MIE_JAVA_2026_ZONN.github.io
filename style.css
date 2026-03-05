@@ -250,22 +250,6 @@ section {
     width: 100%;
 }
 
-.home-imgHover {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 45%;
-    height: 100%;
-    background: transparent;
-    transition: 3s;
-    z-index: -1;
-}
-
-.home-imgHover:hover {
-    background: var(--bg-color);
-    opacity: .8;
-}
-
 .about {
     display: flex;
     justify-content: center;
@@ -881,7 +865,7 @@ img{
 }
 @media (max-width: 462px) {
     .home {
-        background-position: right center; /* Shift background to the left */
+        background-position: 50% 30%; /* Shift background to the left */
     }
     .home-content h1 {
         font-size: 5.2rem;
@@ -904,7 +888,7 @@ img{
 @media (max-width: 371px) {
     .home {
         justify-content: center;
-        background-position: right center;
+        background-position: 50% 30%; /* Shift background to the left */
     }
     .home-content {
         display: flex;
@@ -912,46 +896,18 @@ img{
         flex-direction: column;
         text-align: center;
     }
+    .home-content .text-animate h3 {
+    
+    color: var(--text-color);
+    
+    }
     .home-content h1 {
         font-size: 5rem;
     }
 }
 
 /*KEYFRAMES*/
-@keyframes homeBgText {
 
-    0%,
-    10%,
-    100% {
-        background-position: -33rem 0;
-    }
-
-    65%,
-    85% {
-        background-position: 0 0
-    }
-}
-
-@keyframes homeCursorText {
-
-    0%,
-    10%,
-    100% {
-        width: 0;
-    }
-
-    65%,
-    78%,
-    85% {
-        width: 80%;
-        opacity: 1;
-    }
-
-    75%,
-    81% {
-        opacity: 0;
-    }
-}
 @keyframes aboutSpinner {
     100% {
         transform: translate(-50%, -50%) rotate(360deg);
