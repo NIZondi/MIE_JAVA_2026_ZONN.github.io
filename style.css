@@ -107,7 +107,7 @@ section {
     display: flex;
     align-items: center;
     padding: 0 9%;
-    background: url('../assets/java.png');
+    background: url('/assets/java.png');
     background-size: cover;
     background-position: center;
 }
@@ -928,4 +928,5 @@ img{
     100% {
         width: 0;
     }
+
 }
